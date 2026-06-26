@@ -44,3 +44,4 @@ models:
 
 vars:
   is_test_run: true
+  payment_type_values: [1, 2, 3, 4, 5, 6]
