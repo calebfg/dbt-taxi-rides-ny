@@ -41,3 +41,6 @@ models:
       +materialized: view
     core:
       +materialized: table
+
+vars:
+  is_test_run: true
