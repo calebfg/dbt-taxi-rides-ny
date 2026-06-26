@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: staging
+    database: dezc-project-496112
+    schema: nytaxi
+
+    tables:
+      - name: green_tripdata
+      - name: yellow_tripdata
