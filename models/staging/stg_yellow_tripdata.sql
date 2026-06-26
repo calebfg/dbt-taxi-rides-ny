@@ -1,6 +1,7 @@
 {{ config(materialized='view') }}
 
 select
+    {{ dbt_utils.generate_surrogate_key(['vendorid', 'tpep_pickup_datetime', 'pulocationid', 'dolocationid']) }} as tripid,
     -- identifiers
     cast(vendorid as integer) as vendorid,
     cast(ratecodeid as integer) as ratecodeid,
@@ -24,7 +25,7 @@ select
     cast(tolls_amount as numeric) as tolls_amount,
     cast(improvement_surcharge as numeric) as improvement_surcharge,
     cast(total_amount as numeric) as total_amount,
-    cast(payment_type as integer) as payment_type,
+    {{ get_payment_type_description('payment_type') }} as payment_type_description,
     cast(congestion_surcharge as numeric) as congestion_surcharge
 
 from {{ source('staging', 'yellow_tripdata') }}
