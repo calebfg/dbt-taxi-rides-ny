@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: fact_trips
+    description: >
+      Taxi trips corresponding to both service types (Green and Yellow).
+      The table contains records where both pickup and dropoff locations 
+      are valid taxi zones.
+    columns:
+      - name: tripid
+        description: Primary key for this table
+        tests:
+          - unique:
+              config:
+                severity: warn
+          - not_null:
+              config:
+                severity: warn
+      - name: service_type
+        description: Distinguishes green from yellow taxi trips
+      - name: pickup_zone
+        description: Zone where the trip started
+      - name: dropoff_zone
+        description: Zone where the trip ended
+      - name: payment_type_description
+        description: Human readable description of payment type
+
+  - name: dm_monthly_zone_revenue
+    description: >
+      Aggregated table of revenue metrics grouped by service type, 
+      pickup zone, and month. Used for high-level revenue analysis 
+      in BI tools.
+    columns:
+      - name: revenue_month
+        description: First day of the month for which revenue is aggregated
+      - name: revenue_zone
+        description: Pickup zone for the aggregated trips
+      - name: service_type
+        description: Green or Yellow taxi service
+      - name: total_monthly_trips
+        description: Count of trips in that zone and month
+      - name: revenue_monthly_total_amount
+        description: Sum of total_amount for all trips in that zone and month
+
+  - name: dim_zones
+    description: >
+      List of unique zones where taxi trips can start or end,
+      enriched with borough and service zone information.
+    columns:
+      - name: locationid
+        description: Primary key, unique identifier for each taxi zone
+        tests:
+          - unique:
+              config:
+                severity: warn
+          - not_null:
+              config:
+                severity: warn
+      - name: borough
+        description: NYC borough where the zone is located
+      - name: zone
+        description: Name of the taxi zone
+      - name: service_zone
+        description: Type of service zone (Yellow Zone, Green Zone, etc.)
