@@ -82,7 +82,7 @@ Cleans and standardizes green taxi trip data from the raw source.
 - Materialized as a **view** (lightweight, always fresh, not queried directly by analysts)
 
 #### `stg_yellow_tripdata`
-Same as above for yellow taxi data, with adjustments for schema differences:
+Same as above for yellow taxi data, with adjustments for schema differences: 
 
 - Uses `tpep_pickup_datetime` / `tpep_dropoff_datetime` instead of `lpep_` prefix
 - `trip_type` and `ehail_fee` cast as `NULL` (yellow taxis never have these values)
