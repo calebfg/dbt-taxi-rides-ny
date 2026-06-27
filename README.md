@@ -263,6 +263,5 @@ Trips with unrecognized location IDs are excluded. This keeps the fact table cle
 
 ## Author
 
-Kaleab Gebretsadike  
-Data Engineering Zoomcamp — Module 4  
+Kaleab Gebretsadike   
 GitHub: [calebfg](https://github.com/calebfg)
